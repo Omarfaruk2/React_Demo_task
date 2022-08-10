@@ -1,0 +1,10 @@
+.banner-heading {
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1629652487043-fb2825838f8c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    width: 100%;
+    opacity: 0.8;
+
+}

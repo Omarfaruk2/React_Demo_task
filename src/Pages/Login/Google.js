@@ -1,9 +1,11 @@
 import React from 'react'
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
+import auth from '../../firebase.init'
 import "./Google.css"
 
 
 const Google = () => {
-
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth)
 
     return (
         <div>
@@ -13,9 +15,10 @@ const Google = () => {
                 <hr />
             </div>
             <div className='ms-5'>
-                <button className='btn btn-primary mx-auto'><img src="https://raw.githubusercontent.com/Omarfaruk2/Mobile-Hunter-Client/main/src/imges/googlelo.png" alt="" /> Login With Google</button>
+                <button onClick={() => signInWithGoogle()} className='btn btn-primary mx-auto'><img src="https://raw.githubusercontent.com/Omarfaruk2/Mobile-Hunter-Client/main/src/imges/googlelo.png" alt="" /> Continue With Google</button>
             </div>
 
+            {/* Google Login */}
 
         </div>
     )

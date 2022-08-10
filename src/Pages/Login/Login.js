@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "./Login.css"
 import { Button, Form, Spinner } from 'react-bootstrap'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -7,19 +7,22 @@ import { useForm } from "react-hook-form"
 import Google from './Google'
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import auth from '../../firebase.init'
+import { toast, ToastContainer } from 'react-toastify'
 
 
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, reset, formState: { errors }, handleSubmit } = useForm()
 
-    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth)
+    // const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth)
     const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth)
 
-    let location = useLocation()
-    const navigate = useNavigate()
+    // const email = email.target.value
+    // console.log(email, "email")
 
-    let from = location.state.from.pathname || "/"
+    const navigate = useNavigate()
+    let location = useLocation()
+    // const from = location.state.from.pathname || "/"
 
 
     if (loading) {
@@ -34,7 +37,7 @@ const Login = () => {
     }
 
     if (user) {
-        navigate(from, { replace: true })
+        navigate("/")
     }
 
     let errorElement
@@ -43,13 +46,21 @@ const Login = () => {
         errorElement = <p className='text-danger'>Error: {error?.message}</p>
     }
 
-    const onSubmit = (data) => {
+    const onSubmit = (data, e) => {
         console.log(data)
 
         signInWithEmailAndPassword(data?.email, data?.password)
+        e.target.reset()
     }
 
-
+    // const handleResetPassword = (emailRef, e) => {
+    //     // const notify = () => toast("Email reset password !!!!")
+    //     const email = e.target.value
+    //     console.log("email", email)
+    //     // const email = emailRef.current.value
+    //     // await sendPasswordResetEmail(email)
+    //     // notify()
+    // }
 
     return (
         <div className='login-header pt-5'>
@@ -77,6 +88,8 @@ const Login = () => {
                                 <input className='w-75 input-button' type="submit" />
                             </form>
 
+                            {/* <span onClick={() => handleResetPassword()} className='text-end d-block text-success ' role="button" >Forget Password ?</span>< ToastContainer />
+                            {errorElement} */}
                         </div>
 
 
