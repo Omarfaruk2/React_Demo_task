@@ -1,26 +1,32 @@
-import React from 'react'
-import "./Login.css"
-import { Button, Form, Spinner } from 'react-bootstrap'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import "./Register.css"
 import Card from 'react-bootstrap/Card'
 import { useForm } from "react-hook-form"
 import Google from './Google'
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import auth from '../../firebase.init'
+import { Button, Form, Spinner } from 'react-bootstrap'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 
 
 
-const Login = () => {
+const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
-    const [sendPasswordResetEmail, sending, resetError] = useSendPasswordResetEmail(auth)
-    const [signInWithEmailAndPassword, user, loading, error,] = useSignInWithEmailAndPassword(auth)
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
 
     let location = useLocation()
     const navigate = useNavigate()
 
-    let from = location.state.from.pathname || "/"
+    let from = location?.state?.from?.pathname || "/"
 
+    useEffect(() => {
+
+        if (user) {
+            navigate(from, { replace: true })
+        }
+
+    }, [from, navigate, user])
 
     if (loading) {
         return (
@@ -28,28 +34,15 @@ const Login = () => {
                 <Spinner className='mx-2' animation="grow" variant="primary" />
                 <Spinner className='mx-2' animation="grow" variant="secondary" />
                 <Spinner className='mx-2' animation="grow" variant="success" />
-                <Spinner className='mx-2' animation="grow" variant="success" />
             </div>
         )
     }
 
-    if (user) {
-        navigate(from, { replace: true })
-    }
-
-    let errorElement
-
-    if (error) {
-        errorElement = <p className='text-danger'>Error: {error?.message}</p>
-    }
-
     const onSubmit = (data) => {
-        console.log(data)
+        createUserWithEmailAndPassword(data?.email, data?.password)
+        console.log(data.email, data.password)
 
-        signInWithEmailAndPassword(data?.email, data?.password)
     }
-
-
 
     return (
         <div className='login-header pt-5'>
@@ -66,7 +59,7 @@ const Login = () => {
                     <div className="login-system-form col-lg-6 ">
 
                         <div className='mx-auto'>
-                            <h3 className='text-primary fw-bold ms-3'>Login</h3>
+                            <h3 className='text-primary fw-bold ms-3'>Sing Up</h3>
                             <form className='form-input' onSubmit={handleSubmit(onSubmit)}>
                                 <input placeholder="Your Email" className='text-input' {...register("email", { required: true })} />
                                 {errors.firstName?.type === 'required' && "First name is required"}
@@ -80,8 +73,10 @@ const Login = () => {
                         </div>
 
 
-                        <span>New to Gym center ? <Link className='text-decoration-none text-danger' to="/register "><span className='under'>REGISTER</span></Link>
+
+                        <span>Alreday a user ? <Link className='text-decoration-none text-danger' to="/login "><span className='under'>LOGIN</span></Link>
                         </span>
+
 
                         <div>
                             <Google></Google>
@@ -94,4 +89,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

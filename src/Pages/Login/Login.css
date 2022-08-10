@@ -27,7 +27,7 @@
 .text-input {
     /* margin: 40px 00px 00px 0px; */
     display: block;
-    padding: 0px 10px;
+    padding: 0px 20px;
     margin: 10px 00px;
     width: 75%;
     height: 40px;
@@ -43,11 +43,22 @@
 
 }
 
+/* 
 .form-input input {
-    /* margin: 20px 00px; */
-}
+    margin: 20px 00px;
+} */
 
 .header-card {
     border-radius: 50px;
     padding: 20px;
+}
+
+.or hr {
+    border-top: 3px solid red;
+    width: 34%;
+
+}
+
+.under {
+    border-bottom: 1px solid black
 }
