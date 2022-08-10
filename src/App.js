@@ -6,6 +6,8 @@ import Login from './Pages/Login/Login'
 // import Button from 'react-bootstrap/Button'
 import Navber from './Pages/Share/Navber'
 import Register from './Pages/Login/Register'
+import Additems from './Pages/Additems/Additems'
+import Allitems from './Pages/AllItems/Allitems'
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="additems" element={<Additems />} />
+        <Route path="allitems" element={<Allitems />} />
       </Routes>
     </div>
   )

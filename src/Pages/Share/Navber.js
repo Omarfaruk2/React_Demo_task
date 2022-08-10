@@ -10,13 +10,13 @@ const Navber = () => {
 
     const [user, loading, error] = useAuthState(auth)
 
-    if (user) {
-        console.log(user, "ase")
-    }
+    // if (user) {
+    //     console.log(user, "ase")
+    // }
 
-    if (!user) {
-        console.log("nai")
-    }
+    // if (!user) {
+    //     console.log("nai")
+    // }
     const logout = () => {
         signOut(auth)
         console.log("logout")
@@ -36,7 +36,7 @@ const Navber = () => {
                         </Nav>
                         <Nav className='nav-item'>
                             <Link to="/home">Home</Link>
-                            <Link to="/inventory">Inventory</Link>
+                            <Link to="/allitems">AllItems</Link>
                             <Link to="/additems">Add Items</Link>
                             <Link to="/myitems">My Items</Link>
 
