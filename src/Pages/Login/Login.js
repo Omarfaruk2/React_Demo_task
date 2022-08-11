@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import "./Login.css"
-import { Button, Form, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import { useForm } from "react-hook-form"
@@ -24,6 +24,9 @@ const Login = () => {
     let location = useLocation()
     // const from = location.state.from.pathname || "/"
 
+    if (user) {
+        navigate("/")
+    }
 
     if (loading) {
         return (
@@ -36,9 +39,7 @@ const Login = () => {
         )
     }
 
-    if (user) {
-        navigate("/")
-    }
+
 
     let errorElement
 
@@ -82,7 +83,7 @@ const Login = () => {
                                 <input placeholder="Your Email" className='text-input' {...register("email", { required: true })} />
                                 {errors.firstName?.type === 'required' && "First name is required"}
 
-                                <input placeholder="Your Password" className='text-input' {...register("password", { required: true })} />
+                                <input placeholder="Your Password" className='text-input' type="password" {...register("password", { required: true })} />
                                 {errors.lastName && <p>Last name is required</p>}
 
                                 <input className='w-75 input-button' type="submit" />

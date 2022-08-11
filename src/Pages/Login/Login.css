@@ -3,6 +3,10 @@
     background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%)
 }
 
+.loginSpiner {
+    margin: 300px 00px 00px 600px;
+}
+
 .input-button {
     background-color: #53c8f0;
     color: white;

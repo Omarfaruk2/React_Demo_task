@@ -8,6 +8,9 @@ import Navber from './Pages/Share/Navber'
 import Register from './Pages/Login/Register'
 import Additems from './Pages/Additems/Additems'
 import Allitems from './Pages/AllItems/Allitems'
+import Myitems from './Pages/Myitems/Myitems'
+import Footer from './Pages/Footer/Footer'
+import Notfound from './Pages/Notfound/Notfound'
 
 const App = () => {
   return (
@@ -20,8 +23,11 @@ const App = () => {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="additems" element={<Additems />} />
-        <Route path="allitems" element={<Allitems />} />
+        <Route path="/allitems" element={<Allitems />} />
+        <Route path="myitems" element={<Myitems />} />
+        <Route path="*" element={<Notfound />} />
       </Routes>
+      <Footer></Footer>
     </div>
   )
 }

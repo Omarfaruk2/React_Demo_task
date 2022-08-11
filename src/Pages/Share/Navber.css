@@ -1,3 +1,17 @@
 .nav-item a {
     margin: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.sing {
+    /* margin: 10px; */
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
 }

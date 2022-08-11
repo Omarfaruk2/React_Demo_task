@@ -5,6 +5,10 @@
     background-size: cover;
     height: 600px;
     width: 100%;
-    opacity: 0.8;
+    opacity: 0.6;
 
+}
+
+.card-heard {
+    background-color: rgba(0, 0, 0, 0.5);
 }

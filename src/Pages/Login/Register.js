@@ -64,7 +64,7 @@ const Register = () => {
                                 <input placeholder="Your Email" className='text-input' {...register("email", { required: true })} />
                                 {errors.firstName?.type === 'required' && "First name is required"}
 
-                                <input placeholder="Your Password" className='text-input' {...register("password", { required: true })} />
+                                <input placeholder="Your Password" type="password" className='text-input' {...register("password", { required: true })} />
                                 {errors.lastName && <p>Last name is required</p>}
 
                                 <input className='w-75 input-button' type="submit" />
